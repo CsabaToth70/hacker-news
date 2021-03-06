@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "hackerNewsServlet", urlPatterns = {"/"}, loadOnStartup = 1)
-public class HackerNewServlet extends javax.servlet.http.HttpServlet {
+@WebServlet(name = "hackerNewestServlet", urlPatterns = {"/newest"}, loadOnStartup = 1)
+public class HackerNewestServlet extends javax.servlet.http.HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -16,7 +16,7 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String title = "Michael Hackson news";
+        String title = "Michael Hackson Newest news";
 
         out.println(
                 "<html>\n" +
@@ -28,7 +28,7 @@ public class HackerNewServlet extends javax.servlet.http.HttpServlet {
                         "<script src='/static/js/main.js' defer></script>" +
                         "</head>\n" +
                         "<body>\n" +
-                        "<h1 id=\"whichApi\" data-api=\"news\" align = \"center\">" + title + "</h1>\n" +
+                        "<h1 id=\"whichApi\" data-api=\"newest\" align = \"center\">" + title + "</h1>\n" +
                         "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n" +
                         "\n" +
                         "    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n" +

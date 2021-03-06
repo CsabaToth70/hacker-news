@@ -18,13 +18,13 @@ public class AnotherServlet extends HttpServlet {
         StringBuffer buffer = new StringBuffer();
         for (int i = 0; i < 10; i++) {
             buffer.append("<div>");
-            buffer.append("<a href=\"/another?link_id=" + i + "\">");
-            buffer.append("Hello " + i + ". link:");
+            buffer.append("<a href=\"/another?page=" + i + "\">");
+            buffer.append("Hello " + i + ". page:");
             buffer.append("</a>");
             buffer.append("</div>");
         }
 
-        String linkId = request.getParameter("link_id");
+        String linkId = request.getParameter("page");
 
         out.println(
                 "<html>\n" +
@@ -35,8 +35,8 @@ public class AnotherServlet extends HttpServlet {
                         "<body>\n" +
                         "  <h1>Hello CodeCooler!</h1>" +
                         (linkId == null ?
-                                "<h3>No link was pressed</h3>" :
-                                "<h3>Link " + linkId + " was pressed!</h3>") +
+                                "<h3>No page was pressed</h3>" :
+                                "<h3>Page " + linkId + " was pressed!</h3>") +
                         "  <br/>" +
                         "  <div>" + buffer.toString() + "</div>" +
                         "</body>" +
