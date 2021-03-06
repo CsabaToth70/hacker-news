@@ -33,6 +33,10 @@ async function displayHackerNews(url, actualPage, cardByPage) {
         "<div class=\"card-columns\">\n" +
             drawCard(contents, 0, cardByPage) +
         "</div>")
+    newsCards.insertAdjacentHTML('afterend',
+        `    <footer class="col-md-4 ml-auto">
+        <p> Created by Csaba Toth, email: lesitocsa@gmail.com </p>
+    </footer>`)
     }
 
     function drawCard(contents, startingCardNumber, numberOfCardsByPage){
