@@ -42,18 +42,42 @@ async function displayHackerNews(url, actualPage, cardByPage) {
     function drawCard(contents, startingCardNumber, numberOfCardsByPage){
         let cards = "";
         let counter = 0;
+        let pointList = [];
         let numberOfLastCardByPage = startingCardNumber + numberOfCardsByPage
-        for (let content of contents) {
-            if(startingCardNumber <= counter && counter < numberOfLastCardByPage){
-            cards = cards +
-                `<div class="card bg-light mb-3" style="max-width: 18rem; id="${counter}" data-points="${content['points']}"> 
+        let apiSource = document.getElementById('whichApi').dataset.api
+        if(apiSource === "top"){
+            for(let item of contents){
+                pointList.push(parseInt(item['points']));
+            }
+            pointList.sort(function(a, b){return b-a});
+            for(let point of pointList){
+                for(let content of contents){
+                    if(point === parseInt(content['points']) ){
+                        cards = cards +
+                            `<div class="card bg-light mb-3" style="max-width: 18rem; id="${counter}" data-points="${content['points']}"> 
                       <div class="card-header"><a href="${content["url"]}"> ${content['title']}</a></div>
                       <div class="card-body">
                         <h5 class="card-title">${content['domain']}</h5>
                         <p class="card-text">${content['time_ago']}</p>
                       </div>
                  </div>`;
-            counter++;
+                    }
+                }
+                counter++;
+            }
+        } else {
+            for (let content of contents) {
+                if(startingCardNumber <= counter && counter < numberOfLastCardByPage){
+                    cards = cards +
+                        `<div class="card bg-light mb-3" style="max-width: 18rem; id="${counter}" data-points="${content['points']}"> 
+                      <div class="card-header"><a href="${content["url"]}"> ${content['title']}</a></div>
+                      <div class="card-body">
+                        <h5 class="card-title">${content['domain']}</h5>
+                        <p class="card-text">${content['time_ago']}</p>
+                      </div>
+                 </div>`;
+                    counter++;
+                }
             }
         }
         return cards;
