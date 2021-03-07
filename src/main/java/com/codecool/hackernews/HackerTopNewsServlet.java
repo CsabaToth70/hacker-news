@@ -17,7 +17,10 @@ public class HackerTopNewsServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String title = "Michael Hackson Top news";
-
+        String page = request.getParameter("page");
+        if(page == null){
+            page = "1";
+        }
         out.println(
                 "<html>\n" +
                         "<head>" +
@@ -48,7 +51,17 @@ public class HackerTopNewsServlet extends javax.servlet.http.HttpServlet {
                         "        </ul>\n" +
                         "    </div>\n" +
                         "</nav>" +
-                        "<div id=\"contents\" class=\"container\" </div>\n" +
+                        "   <button id=\"prev\" class=\"btn btn-outline-info btn-sm\" onclick=\"previous_page_single('https://api.hnpwa.com/v0/news/')\" >Previous</button>\n" +
+                        "   <button id=\"next\" class=\"btn btn-outline-info btn-sm\" onclick=\"next_page_single('https://api.hnpwa.com/v0/news/')\" >Next</button>\n" +
+                        "   <br><br>" +
+//                        "   <button id=\"prev\" class=\"btn btn-outline-info btn-sm\" onclick=\"previous_page_single('https://api.hnpwa.com/v0/news/" + page + ".json#')\" >Previous</button>\n" +
+//                        "   <button id=\"next\" class=\"btn btn-outline-info btn-sm\" onclick=\"next_page_single('https://api.hnpwa.com/v0/news/" + page + ".json#')\" >Next</button>\n" +
+//                        "   <br><br>" +
+                        (page == null ?
+                                "<p id=\"pageIndex\" data-page-number=" + 1 + " data-all-page-number=10 ></p>\n":
+                                "<p id=\"pageIndex\" data-page-number=" + page + " data-all-page-number=10 ></p>\n") +
+                        "<div id=\"contents\" class=\"container\">" +
+                        "</div>\n" +
                         "</body></html>"
         );
     }
