@@ -99,14 +99,13 @@ async function displayHackerNews(url, actualPage, cardByPage) {
                 }
                 counter++;
             }
-        } else if(apiSource === "job"){
+        } else if(apiSource === "jobs"){
             for (let content of contents) {
                 if(startingCardNumber <= counter && counter < numberOfLastCardByPage){
                     cards = cards +
                         `<div class="card bg-light mb-3" style="max-width: 18rem; id="${counter}" data-points="${content['points']}"> 
                       <div class="card-header"><a href="${content["url"]}"> ${content['title']}</a></div>
                       <div class="card-body">
-<!--                        <h5 class="card-title">${content['domain']}</h5>-->
                         <p class="card-text">${content['time_ago']}</p>
                       </div>
                  </div>`;
